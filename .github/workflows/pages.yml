@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "modern-controls.css"
+      - "modern-theme.js"
+      - "modern-date-picker.js"
+      - "modern-single-select.js"
+      - "modern-multi-select.js"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,10 +33,15 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Assemble static site and extension runtime
+        run: |
+          mkdir -p _site/extension
+          cp -R docs/. _site/
+          cp modern-controls.css modern-theme.js modern-date-picker.js modern-single-select.js modern-multi-select.js _site/extension/
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: docs
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
