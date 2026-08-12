@@ -15,10 +15,11 @@
   let closeTimer = 0;
 
   function eligible(target) {
-    return target instanceof HTMLSelectElement
-      && !target.multiple
+    if (!(target instanceof HTMLSelectElement)) return false;
+    return !target.multiple
       && (!target.hasAttribute("size") || target.size === 1)
-      && (target.hasAttribute("class") || target.hasAttribute("style"))
+      && target.hasAttribute("data-mnc-authored")
+      && !target.hasAttribute("data-mnc-picker-authored")
       && !target.disabled
       && !target.closest("[data-mnc-ignore]");
   }

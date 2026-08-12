@@ -19,7 +19,7 @@
 
   function enhance(select) {
     if (enhanced.has(select)) return;
-    if (select.closest("[data-mnc-ignore]")) return;
+    if (select.closest("[data-mnc-ignore]") || select.hasAttribute("data-mnc-authored")) return;
     const existingHosts = [];
     let sibling = select.nextElementSibling;
     while (sibling?.classList.contains("modern-multi-select-host")) {

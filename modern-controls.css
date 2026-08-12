@@ -1,40 +1,13 @@
 /* Modern Native Controls — intentionally CSS-only and zero-specificity. */
 @layer modern-native-controls {
-  :where(html, body, *):not([data-mnc-ignore]):not([data-mnc-ignore] *) {
+  :where([data-mnc-scrollbar]):not([data-mnc-ignore]):not([data-mnc-ignore] *) {
     scrollbar-width: none;
     scrollbar-color: transparent transparent;
   }
 
-  :where(html, body, *):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-scrollbar {
+  :where([data-mnc-scrollbar]):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-scrollbar {
     inline-size: 0;
     block-size: 0;
-  }
-
-  :where(html, body, *)::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  :where(html, body, *)::-webkit-scrollbar-button {
-    display: none;
-    inline-size: 0;
-    block-size: 0;
-  }
-
-  :where(html, body, *)::-webkit-scrollbar-thumb {
-    min-block-size: 2.5rem;
-    border: 2px solid transparent;
-    border-radius: 999px;
-    background: rgb(142 142 147 / 58%);
-    background-clip: padding-box;
-  }
-
-  :where(html, body, *)::-webkit-scrollbar-thumb:hover {
-    background: rgb(99 99 102 / 72%);
-    background-clip: padding-box;
-  }
-
-  :where(html, body, *)::-webkit-scrollbar-corner {
-    background: transparent;
   }
 
   :where(select, input[type="date"], input[type="file"], input[type="color"], button, input[type="button"], input[type="submit"], input[type="reset"]) {
@@ -414,28 +387,14 @@
     }
   }
 
-  /* Preserve controls that are already part of a site's design system. */
-  :where(
-    select[class], select[style],
-    input[type="date"][class], input[type="date"][style],
-    input[type="file"][class], input[type="file"][style],
-    input[type="color"][class], input[type="color"][style],
-    input[type="checkbox"][class], input[type="checkbox"][style],
-    input[type="radio"][class], input[type="radio"][style],
-    button[class], button[style],
-    input[type="button"][class], input[type="button"][style],
-    input[type="submit"][class], input[type="submit"][style],
-    input[type="reset"][class], input[type="reset"][style]
-  ) {
-    all: revert-layer;
-  }
-
-  /* Styled selects keep their closed-field design. Their opened list is
-     provided separately by modern-single-select.js. */
-  :where(select[class], select[style])::picker(select),
-  :where(select[class], select[style])::picker-icon,
-  :where(select[class] option, select[style] option),
-  :where(select[class] option, select[style] option)::checkmark {
+  /* Preserve only the subcomponent that the site actually styled. */
+  :where(select[data-mnc-picker-authored])::picker(select),
+  :where(select[data-mnc-picker-authored])::picker-icon,
+  :where(select[data-mnc-picker-authored] option),
+  :where(select[data-mnc-picker-authored] option)::checkmark,
+  :where(input[data-mnc-file-button-authored])::file-selector-button,
+  :where(input[data-mnc-color-swatch-authored])::-webkit-color-swatch,
+  :where(input[data-mnc-color-swatch-authored])::-moz-color-swatch {
     all: revert-layer;
   }
 
@@ -444,6 +403,11 @@
     all: revert-layer;
     scrollbar-width: auto;
     scrollbar-color: auto;
+  }
+
+  /* Preserve controls whose relevant visual properties were authored by the site. */
+  :where([data-mnc-authored]) {
+    all: revert-layer;
   }
 
   :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar,
@@ -457,7 +421,7 @@
 
 /* The native indicator lives in Chrome's internal shadow tree; force it off so
    only the extension's single calendar icon remains visible. */
-html input[type="date"]:not([class]):not([style]):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-calendar-picker-indicator {
+html input[type="date"]:not([data-mnc-date-indicator-authored]):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-calendar-picker-indicator {
   display: none !important;
   opacity: 0 !important;
   -webkit-appearance: none !important;

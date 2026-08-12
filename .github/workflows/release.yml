@@ -21,7 +21,7 @@ jobs:
       - name: Build extension ZIP
         run: |
           zip modern-native-controls.zip \
-            manifest.json modern-controls.css modern-theme.js modern-scrollbars.js \
+            manifest.json modern-controls.css modern-style-guard.js modern-theme.js modern-scrollbars.js \
             modern-date-picker.js modern-single-select.js modern-multi-select.js \
             README.md LICENSE
 

@@ -12,6 +12,98 @@
   let hideTimer = 0;
   let frame = 0;
 
+  function splitSelectors(selectorText) {
+    const selectors = [];
+    let start = 0;
+    let depth = 0;
+    for (let index = 0; index < selectorText.length; index++) {
+      const character = selectorText[index];
+      if (character === "(" || character === "[") depth++;
+      else if (character === ")" || character === "]") depth--;
+      else if (character === "," && depth === 0) {
+        selectors.push(selectorText.slice(start, index));
+        start = index + 1;
+      }
+    }
+    selectors.push(selectorText.slice(start));
+    return selectors;
+  }
+
+  function selectorMatchesScrollbar(selectorText, target) {
+    for (const selector of splitSelectors(selectorText)) {
+      const pseudoIndex = selector.indexOf("::-webkit-scrollbar");
+      if (pseudoIndex < 0) continue;
+      const base = selector.slice(0, pseudoIndex).trim() || "*";
+      try {
+        if (target.matches(base)) return true;
+      } catch {}
+    }
+    return false;
+  }
+
+  function rulesStyleScrollbar(rules, targets) {
+    for (const rule of rules) {
+      if (rule.cssRules && rulesStyleScrollbar(rule.cssRules, targets)) return true;
+      if (!rule.selectorText) continue;
+      const hasStandardStyle = rule.style?.getPropertyValue("scrollbar-width")
+        || rule.style?.getPropertyValue("scrollbar-color")
+        || rule.style?.getPropertyValue("scrollbar-gutter");
+      if (hasStandardStyle) {
+        for (const target of targets) {
+          try {
+            if (target.matches(rule.selectorText)) return true;
+          } catch {}
+        }
+      }
+      if (rule.selectorText.includes("::-webkit-scrollbar")) {
+        for (const target of targets) {
+          if (selectorMatchesScrollbar(rule.selectorText, target)) return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function computedScrollbarIsCustom(target) {
+    const style = getComputedStyle(target);
+    if (style.scrollbarWidth && style.scrollbarWidth !== "auto") return true;
+    if (style.scrollbarColor && style.scrollbarColor !== "auto") return true;
+    if (style.scrollbarGutter && style.scrollbarGutter !== "auto") return true;
+
+    for (const pseudo of ["::-webkit-scrollbar", "::-webkit-scrollbar-thumb", "::-webkit-scrollbar-track"]) {
+      const pseudoStyle = getComputedStyle(target, pseudo);
+      if ((pseudoStyle.width && pseudoStyle.width !== "auto")
+        || (pseudoStyle.height && pseudoStyle.height !== "auto")
+        || pseudoStyle.display === "none"
+        || (pseudoStyle.backgroundColor && pseudoStyle.backgroundColor !== "rgba(0, 0, 0, 0)")
+        || (pseudoStyle.backgroundImage && pseudoStyle.backgroundImage !== "none")) return true;
+    }
+    return false;
+  }
+
+  function siteStylesScrollbar(target) {
+    const targets = target === document.scrollingElement
+      ? [document.documentElement, document.body].filter(Boolean)
+      : [target];
+    if (targets.some(computedScrollbarIsCustom)) return true;
+    for (const sheet of document.styleSheets) {
+      try {
+        if (rulesStyleScrollbar(sheet.cssRules, targets)) return true;
+      } catch {
+        /* Cross-origin rules are covered where possible by computed styles. */
+      }
+    }
+    return false;
+  }
+
+  function eligible(target) {
+    if (!(target instanceof Element) || ignored(target)) return false;
+    if (target.hasAttribute("data-mnc-scrollbar")) return true;
+    if (siteStylesScrollbar(target)) return false;
+    target.setAttribute("data-mnc-scrollbar", "");
+    return true;
+  }
+
   function ensureOverlay() {
     if (host) return;
     host = document.createElement("div");
@@ -62,7 +154,7 @@
 
   function update() {
     frame = 0;
-    if (!activeTarget || !activeTarget.isConnected || ignored(activeTarget)) return hide();
+    if (!activeTarget || !activeTarget.isConnected || !eligible(activeTarget)) return hide();
     ensureOverlay();
     const { target, rect } = metrics(activeTarget);
     const visibleHeight = Math.max(0, Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0));
@@ -146,9 +238,26 @@
 
   document.addEventListener("scroll", event => {
     const target = event.target === document ? document.scrollingElement : event.target;
-    if (!(target instanceof Element) || ignored(target)) return;
+    if (!eligible(target)) return;
     schedule(target);
   }, { capture: true, passive: true });
 
   addEventListener("resize", () => activeTarget && schedule(activeTarget), { passive: true });
+
+  new MutationObserver(records => {
+    const relevant = records.some(record => {
+      if (record.type === "attributes") return record.attributeName === "class" || record.attributeName === "style";
+      if (record.target instanceof HTMLStyleElement) return true;
+      return [...record.addedNodes, ...record.removedNodes].some(node => node instanceof Element
+        && (node.matches("style, link[rel~='stylesheet']") || node.querySelector("style, link[rel~='stylesheet']")));
+    });
+    if (!relevant) return;
+    document.querySelectorAll("[data-mnc-scrollbar]").forEach(element => element.removeAttribute("data-mnc-scrollbar"));
+    hide();
+  }).observe(document.documentElement, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ["class", "style"]
+  });
 })();

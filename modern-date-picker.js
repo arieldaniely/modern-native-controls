@@ -709,6 +709,7 @@
   function dateInput(target) {
     return target instanceof HTMLInputElement
       && target.type === "date"
+      && !target.hasAttribute("data-mnc-date-indicator-authored")
       && !target.closest("[data-mnc-ignore]");
   }
 

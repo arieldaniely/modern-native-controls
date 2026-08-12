@@ -54,7 +54,7 @@
     });
     if (enhanced) {
       document.querySelector(".card").removeAttribute("data-mnc-ignore");
-      for (const source of ["modern-theme.js", "modern-scrollbars.js", "modern-date-picker.js", "modern-single-select.js", "modern-multi-select.js"]) {
+      for (const source of ["modern-style-guard.js", "modern-theme.js", "modern-scrollbars.js", "modern-date-picker.js", "modern-single-select.js", "modern-multi-select.js"]) {
         const script = document.createElement("script"); script.src = `extension/${source}`; script.async = false; document.body.append(script);
       }
     }
