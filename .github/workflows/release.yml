@@ -20,10 +20,10 @@ jobs:
 
       - name: Build extension ZIP
         run: |
-          zip -r modern-native-controls.zip . \
-            -x '.git/*' \
-            -x '.github/*' \
-            -x '*.zip'
+          zip modern-native-controls.zip \
+            manifest.json modern-controls.css modern-theme.js modern-scrollbars.js \
+            modern-date-picker.js modern-single-select.js modern-multi-select.js \
+            README.md LICENSE
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

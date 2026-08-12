@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  const runtimeMarker = "data-mnc-multi-select-runtime";
+  if (document.documentElement.hasAttribute(runtimeMarker)) return;
+  document.documentElement.setAttribute(runtimeMarker, "");
+
   const enhanced = new WeakMap();
 
   function labelFor(select) {
@@ -44,8 +48,8 @@
         .list {
           overflow: auto; padding: .24rem; border: 1px solid var(--mnc-site-border, rgb(0 0 0 / 15%)); border-radius: .6rem;
           background: var(--mnc-site-surface-solid, #fff); color: var(--mnc-site-text, #1d1d1f); font: 13px/1.25 system-ui, -apple-system, "Segoe UI", sans-serif;
-          box-shadow: inset 0 1px 0 rgb(255 255 255 / 14%), 0 2px 7px rgb(0 0 0 / 6%);
-          scrollbar-width: thin; scrollbar-color: var(--mnc-site-muted, rgb(142 142 147 / 58%)) transparent; overscroll-behavior: contain;
+          box-shadow: 0 2px 7px rgb(0 0 0 / 6%);
+          scrollbar-width: none; overscroll-behavior: contain;
         }
         .option {
           display: grid; grid-template-columns: 1rem 1fr; align-items: center; gap: .45rem;

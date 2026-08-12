@@ -1,13 +1,13 @@
 /* Modern Native Controls — intentionally CSS-only and zero-specificity. */
 @layer modern-native-controls {
-  :where(html, body, *) {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(142 142 147 / 58%) transparent;
+  :where(html, body, *):not([data-mnc-ignore]):not([data-mnc-ignore] *) {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
   }
 
-  :where(html, body, *)::-webkit-scrollbar {
-    inline-size: 0.55rem;
-    block-size: 0.55rem;
+  :where(html, body, *):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-scrollbar {
+    inline-size: 0;
+    block-size: 0;
   }
 
   :where(html, body, *)::-webkit-scrollbar-track {
@@ -37,7 +37,7 @@
     background: transparent;
   }
 
-  :where(select, input[type="date"], button, input[type="button"], input[type="submit"], input[type="reset"]) {
+  :where(select, input[type="date"], input[type="file"], input[type="color"], button, input[type="button"], input[type="submit"], input[type="reset"]) {
     --mnc-accent: var(--mnc-site-accent, #0a7aff);
     --mnc-accent-hover: var(--mnc-site-accent-hover, #0068e6);
     --mnc-surface: var(--mnc-site-surface-solid, #ffffff);
@@ -54,7 +54,7 @@
     color: var(--mnc-text);
     font: inherit;
     line-height: 1.25;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%), 0 1px 2px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
     transition: border-color 120ms ease, box-shadow 120ms ease,
       background-color 120ms ease, transform 80ms ease;
   }
@@ -111,7 +111,8 @@
       block-size: 1rem;
       flex: none;
       align-self: center;
-      margin-inline-start: 0.65rem;
+      margin-inline-start: auto;
+      margin-inline-end: 0.1rem;
       margin-block: 0;
       background: var(--mnc-muted);
       -webkit-mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
@@ -237,12 +238,56 @@
     padding: 0.32rem 0.45rem;
   }
 
-  :where(select:hover, input[type="date"]:hover) {
+  :where(input[type="file"]) {
+    max-inline-size: 100%;
+    padding: 0.22rem;
+    color: var(--mnc-muted);
+    cursor: pointer;
+  }
+
+  :where(input[type="file"])::file-selector-button {
+    min-block-size: 1.6rem;
+    margin-inline-end: 0.55rem;
+    padding: 0.3rem 0.65rem;
+    border: 0;
+    border-radius: 0.38rem;
+    background: var(--mnc-site-selected, #e4f0ff);
+    color: var(--mnc-accent-hover);
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  :where(input[type="file"]:hover)::file-selector-button {
+    background: var(--mnc-accent);
+    color: var(--mnc-site-on-accent, #fff);
+  }
+
+  :where(input[type="color"]) {
+    inline-size: 2.65rem;
+    block-size: 2.05rem;
+    padding: 0.2rem;
+    cursor: pointer;
+  }
+
+  :where(input[type="color"])::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  :where(input[type="color"])::-webkit-color-swatch,
+  :where(input[type="color"])::-moz-color-swatch {
+    border: 0;
+    border-radius: 0.34rem;
+  }
+
+  :where(select:hover, input[type="date"]:hover, input[type="file"]:hover, input[type="color"]:hover) {
     border-color: var(--mnc-site-border-hover, rgb(0 0 0 / 27%));
     background-color: var(--mnc-surface-hover);
   }
 
   :where(select:focus-visible, input[type="date"]:focus-visible,
+    input[type="file"]:focus-visible, input[type="color"]:focus-visible,
     button:focus-visible, input[type="button"]:focus-visible,
     input[type="submit"]:focus-visible, input[type="reset"]:focus-visible,
     input[type="checkbox"]:focus-visible, input[type="radio"]:focus-visible) {
@@ -330,7 +375,7 @@
     box-shadow: none;
   }
 
-  :where(select:disabled, input[type="date"]:disabled,
+  :where(select:disabled, input[type="date"]:disabled, input[type="file"]:disabled, input[type="color"]:disabled,
     button:disabled, input[type="button"]:disabled,
     input[type="submit"]:disabled, input[type="reset"]:disabled,
     input[type="checkbox"]:disabled, input[type="radio"]:disabled) {
@@ -345,21 +390,7 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :where(html, body, *) {
-      scrollbar-color: var(--mnc-site-muted, #64748b) transparent;
-    }
-
-    :where(html, body, *)::-webkit-scrollbar-thumb {
-      background: var(--mnc-site-muted, #64748b);
-      background-clip: padding-box;
-    }
-
-    :where(html, body, *)::-webkit-scrollbar-thumb:hover {
-      background: var(--mnc-site-text, #94a3b8);
-      background-clip: padding-box;
-    }
-
-    :where(select, input[type="date"]) {
+    :where(select, input[type="date"], input[type="file"], input[type="color"]) {
       --mnc-surface: var(--mnc-site-surface-solid, #171b24);
       --mnc-surface-hover: var(--mnc-site-hover, #1e2430);
       --mnc-text: var(--mnc-site-text, #f1f5f9);
@@ -387,6 +418,8 @@
   :where(
     select[class], select[style],
     input[type="date"][class], input[type="date"][style],
+    input[type="file"][class], input[type="file"][style],
+    input[type="color"][class], input[type="color"][style],
     input[type="checkbox"][class], input[type="checkbox"][style],
     input[type="radio"][class], input[type="radio"][style],
     button[class], button[style],
@@ -405,11 +438,26 @@
   :where(select[class] option, select[style] option)::checkmark {
     all: revert-layer;
   }
+
+  /* Explicit opt-out for a control or an entire subtree. */
+  :where([data-mnc-ignore], [data-mnc-ignore] *) {
+    all: revert-layer;
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+
+  :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar,
+  :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar-track,
+  :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar-thumb,
+  :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar-button,
+  :where([data-mnc-ignore], [data-mnc-ignore] *)::-webkit-scrollbar-corner {
+    all: revert-layer;
+  }
 }
 
 /* The native indicator lives in Chrome's internal shadow tree; force it off so
    only the extension's single calendar icon remains visible. */
-html input[type="date"]:not([class]):not([style])::-webkit-calendar-picker-indicator {
+html input[type="date"]:not([class]):not([style]):not([data-mnc-ignore]):not([data-mnc-ignore] *)::-webkit-calendar-picker-indicator {
   display: none !important;
   opacity: 0 !important;
   -webkit-appearance: none !important;

@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  const runtimeMarker = "data-mnc-single-select-runtime";
+  if (document.documentElement.hasAttribute(runtimeMarker)) return;
+  document.documentElement.setAttribute(runtimeMarker, "");
+
   let active = null;
   let host = null;
   let root = null;
@@ -46,10 +50,10 @@
         }
         .list {
           overflow: auto; max-block-size: min(14rem, 44vh); padding: 0;
-          scrollbar-width: thin; scrollbar-color: var(--mnc-site-muted, rgb(142 142 147 / 55%)) transparent;
+          scrollbar-width: none;
           overscroll-behavior: contain;
         }
-        .list::-webkit-scrollbar { inline-size: .5rem; }
+        .list::-webkit-scrollbar { inline-size: 0; block-size: 0; }
         .list::-webkit-scrollbar-button { display: none; inline-size: 0; block-size: 0; }
         .list::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 999px; background: var(--mnc-site-muted, rgb(142 142 147 / 55%)); background-clip: padding-box; }
         .option {

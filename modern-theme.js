@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  const runtimeMarker = "data-mnc-theme-runtime";
+  if (document.documentElement.hasAttribute(runtimeMarker)) return;
+  document.documentElement.setAttribute(runtimeMarker, "");
+
   const root = document.documentElement;
   const darkQuery = matchMedia("(prefers-color-scheme: dark)");
   const watchedVariables = [

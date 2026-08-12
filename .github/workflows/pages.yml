@@ -7,6 +7,7 @@ on:
       - "docs/**"
       - "modern-controls.css"
       - "modern-theme.js"
+      - "modern-scrollbars.js"
       - "modern-date-picker.js"
       - "modern-single-select.js"
       - "modern-multi-select.js"
@@ -37,7 +38,7 @@ jobs:
         run: |
           mkdir -p _site/extension
           cp -R docs/. _site/
-          cp modern-controls.css modern-theme.js modern-date-picker.js modern-single-select.js modern-multi-select.js _site/extension/
+          cp modern-controls.css modern-theme.js modern-scrollbars.js modern-date-picker.js modern-single-select.js modern-multi-select.js _site/extension/
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:

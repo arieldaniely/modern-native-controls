@@ -21,24 +21,29 @@
     .card { max-width: 440px; margin: auto; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); box-shadow: 0 10px 35px rgba(20,30,50,.06); }
     h2 { margin: 0 0 5px; font-size: 18px; letter-spacing: -.02em; } .lead { margin: 0 0 22px; color: var(--muted); font-size: 11px; }
     .field { margin-bottom: 17px; } label.title { display: block; margin-bottom: 6px; color: var(--muted); font-size: 11px; font-weight: 650; }
-    select, input[type="date"] { max-width: 100%; } select:not([multiple]), input[type="date"] { width: 100%; }
+    select, input[type="date"], input[type="file"], input[type="color"] { max-width: 100%; } select:not([multiple]), input[type="date"], input[type="file"] { width: 100%; }
     select[multiple] { width: 100%; min-height: 78px; }
-    .choices { display: flex; flex-wrap: wrap; gap: 13px; align-items: center; }.choices label { display: inline-flex; align-items: center; gap: 5px; }
+    .choices, .compact-fields { display: flex; flex-wrap: wrap; gap: 13px; align-items: center; }.choices label { display: inline-flex; align-items: center; gap: 5px; }
+    .compact-fields > div { flex: 1 1 150px; }.compact-fields input[type="color"] { width: 42px; height: 32px; }
     .actions { display: flex; gap: 8px; margin-top: 20px; }
     .scroll-box { height: 62px; overflow: auto; margin-top: 18px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }.scroll-box p { margin: 5px 0; }
     .hint { display: none; margin: -5px 0 16px; color: var(--accent); font-size: 10px; }.enhanced .hint { display: block; }
-    .compact body { padding: 18px; background: transparent; }.compact .card { max-width: 390px; padding: 20px; }.compact h2 { font-size: 16px; }.compact .lead { margin-bottom: 16px; }.compact .field { margin-bottom: 13px; }.compact .multi-field, .compact .scroll-box { display: none; }
+    .compact body { padding: 18px; background: transparent; }.compact .card { max-width: 390px; padding: 20px; }.compact h2 { font-size: 16px; }.compact .lead { margin-bottom: 16px; }.compact .field { margin-bottom: 13px; }.compact .multi-field, .compact .file-color-field, .compact .scroll-box { display: none; }
     @media (max-width: 420px) { body { padding: 14px; }.card { padding: 18px; border-radius: 13px; }.choices { gap: 9px; } }
   </style>
 </head>
 <body>
-  <form class="card" onsubmit="event.preventDefault()">
+  <form class="card" data-mnc-ignore onsubmit="event.preventDefault()">
     <h2>הגדרות משימה</h2>
     <p class="lead">רכיבי HTML אמיתיים — אפשר לפתוח ולבחור.</p>
     <div class="field"><label class="title" for="department">מחלקה</label><select id="department"><option>שיווק</option><option>פיתוח</option><option>תפעול</option><option>שירות לקוחות</option></select></div>
     <div class="field"><label class="title" for="due-date">תאריך יעד</label><input type="date" id="due-date" value="2026-08-12"></div>
     <p class="hint">פתחו את לוח השנה ונסו מעבר עברי / לועזי</p>
     <div class="field multi-field"><label class="title" for="tags">תגיות</label><select id="tags" multiple size="3"><option selected>דחוף</option><option>מעקב</option><option selected>לקוח</option><option>פנימי</option></select></div>
+    <div class="field file-color-field compact-fields">
+      <div><label class="title" for="attachment">קובץ מצורף</label><input type="file" id="attachment"></div>
+      <div><label class="title" for="brand-color">צבע מותג</label><input type="color" id="brand-color" value="#087cf0"></div>
+    </div>
     <div class="field"><span class="title">העדפות</span><div class="choices"><label><input type="checkbox" checked> התראות</label><label><input type="radio" name="priority" checked> רגילה</label><label><input type="radio" name="priority"> גבוהה</label></div></div>
     <div class="actions"><button type="submit">שמירת שינויים</button><button type="reset">איפוס</button></div>
     <div class="scroll-box"><p>אפשרויות מתקדמות</p><p>הרשאות וגישה</p><p>חיבורים חיצוניים</p><p>היסטוריית שינויים</p><p>פרטי מערכת</p></div>
@@ -48,8 +53,9 @@
       if (event.data?.type === "theme") document.documentElement.dataset.theme = event.data.value;
     });
     if (enhanced) {
-      for (const source of ["modern-theme.js", "modern-date-picker.js", "modern-single-select.js", "modern-multi-select.js"]) {
-        const script = document.createElement("script"); script.src = `extension/${source}`; document.body.append(script);
+      document.querySelector(".card").removeAttribute("data-mnc-ignore");
+      for (const source of ["modern-theme.js", "modern-scrollbars.js", "modern-date-picker.js", "modern-single-select.js", "modern-multi-select.js"]) {
+        const script = document.createElement("script"); script.src = `extension/${source}`; script.async = false; document.body.append(script);
       }
     }
   </script>

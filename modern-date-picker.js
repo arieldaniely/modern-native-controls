@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  const runtimeMarker = "data-mnc-date-runtime";
+  if (document.documentElement.hasAttribute(runtimeMarker)) return;
+  document.documentElement.setAttribute(runtimeMarker, "");
+
   let input = null;
   let viewYear = 0;
   let viewMonth = 0;
