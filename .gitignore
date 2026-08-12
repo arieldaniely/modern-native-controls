@@ -1,0 +1,6 @@
+# Local release bundles
+*.zip
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db

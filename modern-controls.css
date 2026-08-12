@@ -1,0 +1,416 @@
+/* Modern Native Controls — intentionally CSS-only and zero-specificity. */
+@layer modern-native-controls {
+  :where(html, body, *) {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(142 142 147 / 58%) transparent;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar {
+    inline-size: 0.55rem;
+    block-size: 0.55rem;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar-button {
+    display: none;
+    inline-size: 0;
+    block-size: 0;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar-thumb {
+    min-block-size: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: rgb(142 142 147 / 58%);
+    background-clip: padding-box;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar-thumb:hover {
+    background: rgb(99 99 102 / 72%);
+    background-clip: padding-box;
+  }
+
+  :where(html, body, *)::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  :where(select, input[type="date"], button, input[type="button"], input[type="submit"], input[type="reset"]) {
+    --mnc-accent: var(--mnc-site-accent, #0a7aff);
+    --mnc-accent-hover: var(--mnc-site-accent-hover, #0068e6);
+    --mnc-surface: var(--mnc-site-surface-solid, #ffffff);
+    --mnc-surface-hover: var(--mnc-site-hover, #f7f7f9);
+    --mnc-text: var(--mnc-site-text, #1d1d1f);
+    --mnc-muted: var(--mnc-site-muted, #6e6e73);
+    --mnc-border: var(--mnc-site-border, rgb(0 0 0 / 17%));
+    --mnc-ring: var(--mnc-site-ring, rgb(10 122 255 / 22%));
+    box-sizing: border-box;
+    min-block-size: 2.05rem;
+    border: 1px solid var(--mnc-border);
+    border-radius: 0.5rem;
+    background-color: var(--mnc-surface);
+    color: var(--mnc-text);
+    font: inherit;
+    line-height: 1.25;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%), 0 1px 2px rgb(0 0 0 / 5%);
+    transition: border-color 120ms ease, box-shadow 120ms ease,
+      background-color 120ms ease, transform 80ms ease;
+  }
+
+  :where(select, input[type="date"]) {
+    max-inline-size: 100%;
+    padding-block: 0.38rem;
+    padding-inline: 0.65rem;
+  }
+
+  :where(input[type="date"]) {
+    padding-inline-end: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2v4M16 2v4M3 10h18'/%3E%3Crect width='18' height='18' x='3' y='4' rx='3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  :where(input[type="date"]:dir(rtl)) {
+    padding-inline: 2rem 0.65rem;
+    background-position: left 0.6rem center;
+  }
+
+  :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) {
+    appearance: none;
+    padding-inline-end: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+  }
+
+  :where(select:not([multiple]):not([size]):dir(rtl), select:not([multiple])[size="1"]:dir(rtl)) {
+    background-position: left 0.6rem center;
+  }
+
+  /* Chrome 135+: style the actual opened picker, not only the closed field. */
+  @supports (appearance: base-select) {
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]),
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select) {
+      appearance: base-select;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) {
+      background-image: none;
+      padding-inline-end: 0.65rem;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker-icon {
+      content: "";
+      display: block;
+      inline-size: 1rem;
+      block-size: 1rem;
+      flex: none;
+      align-self: center;
+      margin-inline-start: 0.65rem;
+      margin-block: 0;
+      background: var(--mnc-muted);
+      -webkit-mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+      mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+      rotate: 0deg;
+      translate: 0 0.12rem;
+      transition: rotate 160ms ease;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]):open::picker-icon {
+      rotate: 180deg;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select) {
+      max-block-size: min(15rem, 45vh);
+      inline-size: max-content;
+      min-inline-size: anchor-size(width);
+      max-inline-size: min(24rem, calc(100vw - 1rem));
+      margin-block: 0.2rem;
+      padding: 0.2rem;
+      border: 1px solid var(--mnc-site-border, rgb(0 0 0 / 11%));
+      border-radius: 0.65rem;
+      background: var(--mnc-site-surface, rgb(255 255 255 / 98%));
+      color: var(--mnc-site-text, #1d1d1f);
+      font-size: 0.9em;
+      box-shadow: 0 18px 42px var(--mnc-site-shadow, rgb(0 0 0 / 18%)), 0 3px 10px rgb(0 0 0 / 8%);
+      backdrop-filter: blur(20px) saturate(1.2);
+      scrollbar-width: thin;
+      scrollbar-color: rgb(142 142 147 / 58%) transparent;
+      overscroll-behavior: contain;
+      opacity: 0;
+      transform: translateY(-0.22rem) scale(0.985);
+      transform-origin: top center;
+      transition: opacity 160ms cubic-bezier(.2, .8, .2, 1),
+        transform 180ms cubic-bezier(.2, .8, .2, 1),
+        display 180ms, overlay 180ms;
+      transition-behavior: allow-discrete;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select):popover-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @starting-style {
+      :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select):popover-open {
+        opacity: 0;
+        transform: translateY(-0.22rem) scale(0.985);
+      }
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select)::-webkit-scrollbar-button {
+      display: none;
+      inline-size: 0;
+      block-size: 0;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option {
+      min-block-size: 1.7rem;
+      margin-block: 0.05rem;
+      padding: 0.28rem 0.45rem;
+      border: 0;
+      border-radius: 0.42rem;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      transition: background-color 100ms ease, color 100ms ease;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:hover,
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:focus-visible {
+      outline: 0;
+      background: var(--mnc-site-hover, #edf5ff);
+      color: var(--mnc-site-accent-hover, #0068e6);
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:checked {
+      background: var(--mnc-site-selected, #e4f0ff);
+      color: var(--mnc-site-accent-hover, #0068e6);
+      font-weight: 650;
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option::checkmark {
+      content: "✓";
+      color: var(--mnc-site-accent, #0a7aff);
+    }
+
+    :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) optgroup {
+      padding-block: 0.25rem;
+      color: var(--mnc-site-muted, #64748b);
+      font-weight: 700;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select) {
+        border-color: var(--mnc-site-border, #3d4756);
+        background: var(--mnc-site-surface, #171b24);
+        color: var(--mnc-site-text, #f1f5f9);
+        box-shadow: 0 16px 40px var(--mnc-site-shadow, rgb(0 0 0 / 45%));
+      }
+
+      :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:hover,
+      :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:focus-visible {
+        background: var(--mnc-site-hover, #202b3c);
+        color: var(--mnc-site-accent-hover, #93c5fd);
+      }
+
+      :where(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:checked {
+        background: var(--mnc-site-selected, #1e3a5f);
+        color: var(--mnc-site-accent-hover, #bfdbfe);
+      }
+    }
+  }
+
+  :where(select[multiple], select[size]:not([size="1"])) {
+    min-block-size: 5.5rem;
+    padding: 0.25rem;
+  }
+
+  :where(select[multiple] option, select[size]:not([size="1"]) option) {
+    border-radius: 0.35rem;
+    padding: 0.32rem 0.45rem;
+  }
+
+  :where(select:hover, input[type="date"]:hover) {
+    border-color: var(--mnc-site-border-hover, rgb(0 0 0 / 27%));
+    background-color: var(--mnc-surface-hover);
+  }
+
+  :where(select:focus-visible, input[type="date"]:focus-visible,
+    button:focus-visible, input[type="button"]:focus-visible,
+    input[type="submit"]:focus-visible, input[type="reset"]:focus-visible,
+    input[type="checkbox"]:focus-visible, input[type="radio"]:focus-visible) {
+    outline: 0;
+    border-color: var(--mnc-accent, #2563eb);
+    box-shadow: 0 0 0 3px var(--mnc-ring, rgb(10 122 255 / 22%));
+  }
+
+  :where(input[type="checkbox"], input[type="radio"]) {
+    --mnc-accent: var(--mnc-site-accent, #0a7aff);
+    --mnc-ring: var(--mnc-site-ring, rgb(10 122 255 / 22%));
+    appearance: none;
+    box-sizing: border-box;
+    display: inline-grid;
+    place-content: center;
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin: 0 0.25rem;
+    border: 1.5px solid rgb(0 0 0 / 28%);
+    background: var(--mnc-site-surface-solid, #fff);
+    vertical-align: -0.2em;
+    cursor: pointer;
+    transition: border-color 120ms ease, background-color 120ms ease,
+      box-shadow 120ms ease, transform 80ms ease;
+  }
+
+  :where(input[type="checkbox"]) {
+    border-radius: 0.28rem;
+  }
+
+  :where(input[type="radio"]) {
+    border-radius: 50%;
+  }
+
+  :where(input[type="checkbox"], input[type="radio"])::before {
+    content: "";
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    background: var(--mnc-site-on-accent, #fff);
+    transform: scale(0);
+    transition: transform 100ms ease-out;
+  }
+
+  :where(input[type="checkbox"])::before {
+    clip-path: polygon(14% 44%, 0 59%, 40% 100%, 100% 18%, 82% 0, 38% 65%);
+  }
+
+  :where(input[type="radio"])::before {
+    border-radius: 50%;
+  }
+
+  :where(input[type="checkbox"]:checked, input[type="radio"]:checked) {
+    border-color: var(--mnc-accent);
+    background: var(--mnc-accent);
+  }
+
+  :where(input[type="checkbox"]:checked, input[type="radio"]:checked)::before {
+    transform: scale(1);
+  }
+
+  :where(input[type="checkbox"]:active, input[type="radio"]:active) {
+    transform: scale(0.92);
+  }
+
+  :where(button, input[type="button"], input[type="submit"], input[type="reset"]) {
+    padding: 0.4rem 0.75rem;
+    border-color: var(--mnc-accent);
+    background: var(--mnc-accent);
+    color: var(--mnc-site-on-accent, #fff);
+    font-weight: 600;
+    cursor: pointer;
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 12%), transparent);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 12%), inset 0 1px 0 rgb(255 255 255 / 18%);
+  }
+
+  :where(button:hover, input[type="button"]:hover,
+    input[type="submit"]:hover, input[type="reset"]:hover) {
+    border-color: var(--mnc-accent-hover);
+    background: var(--mnc-accent-hover);
+  }
+
+  :where(button:active, input[type="button"]:active,
+    input[type="submit"]:active, input[type="reset"]:active) {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+
+  :where(select:disabled, input[type="date"]:disabled,
+    button:disabled, input[type="button"]:disabled,
+    input[type="submit"]:disabled, input[type="reset"]:disabled,
+    input[type="checkbox"]:disabled, input[type="radio"]:disabled) {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  :where(input[type="date"]:not([class]):not([style]))::-webkit-calendar-picker-indicator {
+    display: none !important;
+    opacity: 0 !important;
+    -webkit-appearance: none !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :where(html, body, *) {
+      scrollbar-color: var(--mnc-site-muted, #64748b) transparent;
+    }
+
+    :where(html, body, *)::-webkit-scrollbar-thumb {
+      background: var(--mnc-site-muted, #64748b);
+      background-clip: padding-box;
+    }
+
+    :where(html, body, *)::-webkit-scrollbar-thumb:hover {
+      background: var(--mnc-site-text, #94a3b8);
+      background-clip: padding-box;
+    }
+
+    :where(select, input[type="date"]) {
+      --mnc-surface: var(--mnc-site-surface-solid, #171b24);
+      --mnc-surface-hover: var(--mnc-site-hover, #1e2430);
+      --mnc-text: var(--mnc-site-text, #f1f5f9);
+      --mnc-border: var(--mnc-site-border, #475569);
+    }
+
+    :where(input[type="checkbox"], input[type="radio"]) {
+      background-color: var(--mnc-site-surface-solid, #171b24);
+      border-color: var(--mnc-site-border-hover, #64748b);
+    }
+
+    :where(input[type="checkbox"]:checked, input[type="radio"]:checked) {
+      background-color: var(--mnc-accent);
+      border-color: var(--mnc-accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(select, input, button) {
+      transition: none;
+    }
+  }
+
+  /* Preserve controls that are already part of a site's design system. */
+  :where(
+    select[class], select[style],
+    input[type="date"][class], input[type="date"][style],
+    input[type="checkbox"][class], input[type="checkbox"][style],
+    input[type="radio"][class], input[type="radio"][style],
+    button[class], button[style],
+    input[type="button"][class], input[type="button"][style],
+    input[type="submit"][class], input[type="submit"][style],
+    input[type="reset"][class], input[type="reset"][style]
+  ) {
+    all: revert-layer;
+  }
+
+  /* Styled selects keep their closed-field design. Their opened list is
+     provided separately by modern-single-select.js. */
+  :where(select[class], select[style])::picker(select),
+  :where(select[class], select[style])::picker-icon,
+  :where(select[class] option, select[style] option),
+  :where(select[class] option, select[style] option)::checkmark {
+    all: revert-layer;
+  }
+}
+
+/* The native indicator lives in Chrome's internal shadow tree; force it off so
+   only the extension's single calendar icon remains visible. */
+html input[type="date"]:not([class]):not([style])::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}

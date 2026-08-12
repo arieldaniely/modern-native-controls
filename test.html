@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>בדיקת Modern Native Controls</title>
+  <link rel="stylesheet" href="modern-controls.css">
+  <script src="modern-theme.js" defer></script>
+  <script src="modern-date-picker.js" defer></script>
+  <script src="modern-multi-select.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 40px; background: #f5f5f7; color: #333; }
+    .container { max-width: 500px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px #0000000d; }
+    .row { margin-bottom: 25px; }
+    label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
+    .inline { display: inline; font-weight: 400; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>בדיקת רכיבי מערכת</h2>
+    <div class="row">
+      <label for="dropdown">תפריט רשימה נפתחת:</label>
+      <select id="dropdown"><option>אפשרות ראשונה</option><option>אפשרות שנייה</option><option>אפשרות שלישית</option></select>
+    </div>
+    <div class="row">
+      <label for="multi-dropdown">רשימת בחירה מרובה:</label>
+      <select id="multi-dropdown" multiple size="3"><option>אפשרות א׳</option><option>אפשרות ב׳</option><option>אפשרות ג׳</option></select>
+    </div>
+    <div class="row"><label for="date">לוח שנה:</label><input type="date" id="date"></div>
+    <div class="row">
+      <label>תיבות סימון ורדיו:</label>
+      <input type="checkbox" id="check1"><label class="inline" for="check1">סמן אותי</label><br><br>
+      <input type="radio" id="radio1" name="test"><label class="inline" for="radio1">אפשרות א׳</label>
+      <input type="radio" id="radio2" name="test"><label class="inline" for="radio2">אפשרות ב׳</label>
+    </div>
+    <div class="row"><label for="btn">כפתור רגיל:</label><button id="btn">לחץ כאן</button></div>
+    <div class="row">
+      <label>אזור גלילה:</label>
+      <div style="height:90px; overflow:auto; border:1px solid #ddd; padding:10px">
+        שורה ראשונה<br>שורה שנייה<br>שורה שלישית<br>שורה רביעית<br>שורה חמישית<br>שורה שישית
+      </div>
+    </div>
+  </div>
+</body>
+</html>

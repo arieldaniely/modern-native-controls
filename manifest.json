@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Modern Native Controls",
+  "version": "1.5.3",
+  "description": "Lightweight, modern styling for native form controls on web pages.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["modern-controls.css"],
+      "js": ["modern-theme.js", "modern-date-picker.js", "modern-single-select.js", "modern-multi-select.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
