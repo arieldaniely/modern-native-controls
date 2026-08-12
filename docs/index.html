@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Modern Native Controls — תוסף Chrome קל ומהיר שהופך רכיבי טפסים מיושנים למודרניים, נגישים ונעימים.">
+  <meta property="og:title" content="Modern Native Controls">
+  <meta property="og:description" content="רכיבי הטופס של הדפדפן, בעיצוב שהיה צריך להיות להם מלכתחילה.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arieldaniely.github.io/modern-native-controls/">
+  <title>Modern Native Controls — ממשק מודרני לכל אתר</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230077ed'/%3E%3Cpath d='M18 22h28M18 32h18M18 42h23' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">דלג לתוכן</a>
+
+  <header class="site-header">
+    <div class="nav shell">
+      <a class="brand" href="#top" aria-label="Modern Native Controls — דף הבית">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Modern Native Controls</span>
+      </a>
+      <nav aria-label="ניווט ראשי">
+        <a href="#demo">הדגמה</a>
+        <a href="#features">יכולות</a>
+        <a href="#install">התקנה</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="החלף מצב צבע" title="מצב כהה / בהיר">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        </button>
+        <a class="github-link" href="https://github.com/arieldaniely/modern-native-controls" target="_blank" rel="noreferrer" aria-label="פתח את המאגר ב-GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.02c-3.23.7-3.91-1.37-3.91-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.58-.29-5.29-1.29-5.29-5.69 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.47.11-3.06 0 0 .98-.31 3.16 1.18a10.96 10.96 0 0 1 5.75 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.42-2.72 5.4-5.31 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span></span> חינמי, פתוח וקל משקל</div>
+        <h1>ברירת המחדל,<br><em>רק הרבה יותר טובה.</em></h1>
+        <p>תוסף Chrome שמחליף את רכיבי הטופס המיושנים בממשק מודרני, מהיר ונעים — בלי לשבור את העיצוב הקיים של האתר.</p>
+        <div class="hero-actions">
+          <a class="primary-cta" href="https://github.com/arieldaniely/modern-native-controls/releases/latest/download/modern-native-controls.zip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg>
+            הורדת התוסף
+          </a>
+          <a class="secondary-cta" href="#demo">לראות לפני ואחרי <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="hero-meta">
+          <span><i class="status-dot"></i> גרסה 1.5.3</span>
+          <span>Manifest V3</span>
+          <span>ללא איסוף מידע</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-label="תצוגה מקדימה של התוסף">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="browser-window">
+          <div class="browser-bar">
+            <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="address"><span class="lock">⌁</span> your-app.com/settings</div>
+            <div class="browser-more">•••</div>
+          </div>
+          <div class="app-preview">
+            <div class="preview-sidebar">
+              <div class="mini-logo"></div>
+              <span class="line active"></span><span class="line"></span><span class="line short"></span>
+            </div>
+            <div class="preview-content">
+              <div class="preview-head"><div><span></span><span></span></div><i></i></div>
+              <div class="preview-card">
+                <label>ערכת תצוגה</label>
+                <button class="showcase-select" type="button" aria-expanded="true">מצב אוטומטי <svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button>
+                <div class="showcase-menu">
+                  <button type="button"><span>בהיר</span></button>
+                  <button type="button" class="selected"><span>אוטומטי</span><b>✓</b></button>
+                  <button type="button"><span>כהה</span></button>
+                </div>
+              </div>
+              <div class="preview-row"><span></span><button type="button">שמירת שינויים</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-chip chip-theme"><span>◐</span> מתאים את עצמו לאתר</div>
+        <div class="floating-chip chip-fast"><span>⚡</span> מהיר וקל</div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="יתרונות מרכזיים">
+      <div class="shell trust-inner">
+        <span><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> עובד בכל אתר</span>
+        <span><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.5 7 10 4.1-1.5 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> בלי מעקב</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 14a8 8 0 1 1 16 0"/><path d="M12 14 17 9M4 14h16"/></svg> ביצועים גבוהים</span>
+        <span><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg> קוד פתוח</span>
+      </div>
+    </section>
+
+    <section class="demo-section shell" id="demo">
+      <div class="section-heading reveal">
+        <div class="eyebrow"><span></span> ההבדל מורגש מיד</div>
+        <h2>אותו הטופס. חוויה אחרת לגמרי.</h2>
+        <p>לחצו על הרשימות ועל לוחות השנה כדי לחוות את ההבדל.</p>
+      </div>
+
+      <div class="compare-wrap reveal">
+        <div class="compare-labels" aria-hidden="true">
+          <span class="before-label">לפני</span>
+          <span class="after-label">אחרי</span>
+        </div>
+        <div class="compare-grid">
+          <article class="demo-panel legacy-panel">
+            <header><span class="panel-badge">ברירת המחדל</span><small>מראה מערכת מיושן</small></header>
+            <div class="demo-form legacy-form">
+              <div class="field-group">
+                <label>בחר מחלקה</label>
+                <button class="legacy-field legacy-select-trigger" type="button" aria-expanded="false">שיווק <span>▼</span></button>
+                <div class="legacy-menu" hidden>
+                  <button type="button">שיווק</button><button type="button">פיתוח</button><button type="button">תפעול</button>
+                </div>
+              </div>
+              <div class="field-group">
+                <label>תאריך יעד</label>
+                <button class="legacy-field legacy-date-trigger" type="button" aria-expanded="false">12/08/2026 <span>▣</span></button>
+                <div class="legacy-calendar" hidden>
+                  <div><button type="button">&lt;</button><b>August 2026</b><button type="button">&gt;</button></div>
+                  <p>Su Mo Tu We Th Fr Sa</p>
+                  <div class="legacy-days">1 2 3 4 5 6 7 8 9 10 11 <b>12</b> 13 14 15 16 17 18 19 20 21</div>
+                </div>
+              </div>
+              <div class="check-line"><span class="legacy-check">✓</span> קבלת עדכונים</div>
+              <button class="legacy-submit" type="button">שמירה</button>
+              <div class="legacy-scroll"><p>אפשרויות נוספות</p><p>הגדרות מערכת</p><p>הרשאות משתמש</p><p>תצוגה מתקדמת</p></div>
+            </div>
+          </article>
+
+          <article class="demo-panel modern-panel">
+            <header><span class="panel-badge">Modern Native Controls</span><small>נקי, מהיר ומותאם לאתר</small></header>
+            <div class="demo-form modern-form">
+              <div class="field-group modern-select-wrap">
+                <label>בחר מחלקה</label>
+                <button class="modern-field modern-select-trigger" type="button" aria-expanded="false"><span>שיווק</span><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button>
+                <div class="modern-menu" hidden role="listbox">
+                  <button type="button" class="selected" role="option" aria-selected="true"><span>שיווק</span><b>✓</b></button>
+                  <button type="button" role="option"><span>פיתוח</span><b>✓</b></button>
+                  <button type="button" role="option"><span>תפעול</span><b>✓</b></button>
+                </div>
+              </div>
+              <div class="field-group modern-date-wrap">
+                <label>תאריך יעד</label>
+                <button class="modern-field modern-date-trigger" type="button" aria-expanded="false"><span>12 באוגוסט 2026</span><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="3"/></svg></button>
+                <div class="modern-calendar" hidden>
+                  <div class="calendar-mode" role="group" aria-label="סוג לוח שנה"><button type="button" class="active" data-mode="gregorian">לועזי</button><button type="button" data-mode="hebrew">עברי</button></div>
+                  <div class="calendar-head"><button type="button" aria-label="החודש הקודם">›</button><strong class="calendar-title">אוגוסט 2026</strong><button type="button" aria-label="החודש הבא">‹</button></div>
+                  <div class="weekdays"><span>א</span><span>ב</span><span>ג</span><span>ד</span><span>ה</span><span>ו</span><span>ש</span></div>
+                  <div class="calendar-days" aria-label="ימי החודש"></div>
+                  <div class="calendar-footer"><button type="button" class="today-action">היום</button><button type="button" class="clear-action">ניקוי</button></div>
+                </div>
+              </div>
+              <label class="modern-check"><input type="checkbox" checked><span></span> קבלת עדכונים</label>
+              <button class="modern-submit" type="button"><span>שמירה</span><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></button>
+              <div class="modern-scroll"><p>אפשרויות נוספות</p><p>הגדרות מערכת</p><p>הרשאות משתמש</p><p>תצוגה מתקדמת</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section" id="features">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> קטן בקוד, גדול בחוויה</div>
+          <h2>כל מה שצריך. שום דבר שלא.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><div class="feature-icon blue"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M9 17h6"/></svg></div><h3>רשימות שבאמת נראות טוב</h3><p>גם השדה הסגור וגם תפריט האפשרויות מקבלים מראה קומפקטי, גלילה נעימה ואנימציה עדינה.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon purple"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="3"/></svg></div><h3>לוח עברי ולועזי</h3><p>מעבר חלק בין הלוחות, חיפוש תאריך עברי והמרה אוטומטית לערך ISO לועזי עבור הטופס.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon orange"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1-.16-2-.47-2.9A7 7 0 0 1 12 3Z"/></svg></div><h3>כהה, בהיר וצבעי המותג</h3><p>התוסף מזהה את צבעי האתר ומתאים אליהם משטחים, טקסט, גבולות וצבע הדגשה.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon green"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div><h3>בנוי לביצועים</h3><p>ללא שרת, ללא ספריות כבדות וללא בקשות רשת. רק CSS ו־JavaScript ממוקדים.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon cyan"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></div><h3>מכבד עיצוב קיים</h3><p>רכיבים שכבר עוצבו בידי האתר שומרים על המעטפת שלהם; רק ממשקי המערכת המיושנים מוחלפים.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon pink"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.5 7 10 4.1-1.5 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>פרטי לחלוטין</h3><p>אין איסוף נתונים, אין analytics ואין הרשאות API מיותרות. העיצוב מתבצע מקומית בדפדפן.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="install-section shell" id="install">
+      <div class="install-card reveal">
+        <div class="install-copy">
+          <div class="eyebrow light"><span></span> התקנה בפחות מדקה</div>
+          <h2>ארבעה צעדים.<br>וכל האינטרנט נראה טוב יותר.</h2>
+          <p>כרגע התוסף מותקן ידנית כפריט לא ארוז. עדכון לגרסה חדשה פשוט כמו החלפת התיקייה וטעינה מחדש.</p>
+          <a class="light-cta" href="https://github.com/arieldaniely/modern-native-controls/releases/latest/download/modern-native-controls.zip">הורדת הגרסה האחרונה <span>↓</span></a>
+        </div>
+        <ol class="install-steps">
+          <li><span>1</span><div><strong>מורידים ומחלצים</strong><p>הורידו את קובץ ה־ZIP וחלצו אותו לתיקייה קבועה.</p></div></li>
+          <li><span>2</span><div><strong>פותחים את מנהל התוספים</strong><p>הקלידו <code>chrome://extensions</code> בשורת הכתובת.</p></div></li>
+          <li><span>3</span><div><strong>מפעילים מצב פיתוח</strong><p>הפעילו את המתג בפינה העליונה של העמוד.</p></div></li>
+          <li><span>4</span><div><strong>טוענים את התיקייה</strong><p>לחצו “טעינת פריט שלא נארז” ובחרו בתיקייה שחולצה.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="closing-section shell reveal">
+      <div class="closing-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h2>הפרטים הקטנים הם כל ההבדל.</h2>
+      <p>התקינו פעם אחת, ותנו לכל אתר להרגיש קצת יותר מלוטש.</p>
+      <div class="closing-actions">
+        <a class="primary-cta" href="https://github.com/arieldaniely/modern-native-controls/releases/latest/download/modern-native-controls.zip">הורדה חינמית</a>
+        <a class="secondary-cta" href="https://github.com/arieldaniely/modern-native-controls" target="_blank" rel="noreferrer">צפייה בקוד ב־GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Modern Native Controls</span></div>
+      <p>קוד פתוח ברישיון MIT · נבנה עם תשומת לב לפרטים</p>
+      <a href="https://github.com/arieldaniely/modern-native-controls" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

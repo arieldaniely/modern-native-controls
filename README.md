@@ -1,5 +1,7 @@
 # Modern Native Controls
 
+[דף הבית והדגמה חיה](https://arieldaniely.github.io/modern-native-controls/) · [הורדת הגרסה האחרונה](https://github.com/arieldaniely/modern-native-controls/releases/latest)
+
 ## תאימות לעיצוב האתר
 
 רכיב שכבר כולל `class` או `style` שומר על העיצוב החיצוני של האתר. התוסף מחליף רק את תת־הרכיב הפנימי שנפתח — תפריט האפשרויות או לוח השנה. כדי להשאיר רכיב שלם ללא התערבות, יש להוסיף לו או לאחד מאבותיו `data-mnc-ignore`.
